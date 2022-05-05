@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion ,ObjectId } = require('mongodb');
 require('dotenv').config()
 const port = process.env.PORT || 5000 ;
 
@@ -22,12 +22,36 @@ async function run(){
 try{
   await client.connect()
   const inventoryCollection = client.db('electronicsWarehouse').collection('inventory')
+  const newCollection = client.db('electronicsWarehouse').collection('newInvetory')
 app.get('/inventory',async(req,res)=>{
 const query = {}
 const cursor = inventoryCollection.find(query)
 const inventory = await cursor.toArray()
 res.send(inventory)
 
+})
+// my items  section //
+app.get('/myitems',async(req,res)=>{
+const query = {}
+const cursor = newCollection.find(query)
+const newInventory = await cursor.toArray()
+res.send(newInventory)
+
+})
+
+app.delete('/myitems/:id',async(req,res)=>{
+  const id =req.params.id 
+  const query = {_id:ObjectId(id)}
+  const result = await newCollection.deleteOne(query)
+  res.send(result)
+})
+
+
+app.post('/addItems',async(req,res)=>{
+  const order = req.body
+  const result = await newCollection.insertOne(order)
+  console.log(result);
+  res.send(result)
 })
 
 
