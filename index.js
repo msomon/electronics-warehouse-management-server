@@ -30,6 +30,21 @@ const inventory = await cursor.toArray()
 res.send(inventory)
 
 })
+
+app.put('/inventory/:id',async(req,res)=>{
+  const id =req.params.id 
+  const updateQuantity =req.body; 
+  const filter = {_id:ObjectId(id)}
+  const options = {upsert:true}
+  const updateDoc = {
+    $set: {updateQuantity}
+  }
+
+  const result = await inventoryCollection.updateOne(filter,updateDoc,options)
+  res.send(result)
+
+})
+
 app.get('/inventory/:id',async(req,res)=>{
   const id =req.params.id 
   const query = {_id:ObjectId(id)}
@@ -38,6 +53,12 @@ app.get('/inventory/:id',async(req,res)=>{
 
 })
 
+app.delete('/inventory/:id',async(req,res)=>{
+  const id =req.params.id 
+  const query = {_id:ObjectId(id)}
+  const result = await inventoryCollection.deleteOne(query)
+  res.send(result)
+})
 
 
 // my items  section //
