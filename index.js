@@ -34,10 +34,11 @@ res.send(inventory)
 app.put('/inventory/:id',async(req,res)=>{
   const id =req.params.id 
   const updateQuantity =req.body; 
+  console.log(updateQuantity.quantity);
   const filter = {_id:ObjectId(id)}
   const options = {upsert:true}
   const updateDoc = {
-    $set: {quantity:updateQuantity.newQuantity}
+    $set: {quantity:updateQuantity.quantity}
   }
 
   const result = await inventoryCollection.updateOne(filter,updateDoc,options)
