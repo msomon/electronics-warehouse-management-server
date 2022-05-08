@@ -37,7 +37,7 @@ app.put('/inventory/:id',async(req,res)=>{
   const filter = {_id:ObjectId(id)}
   const options = {upsert:true}
   const updateDoc = {
-    $set: {updateQuantity}
+    $set: {quantity:updateQuantity.newQuantity}
   }
 
   const result = await inventoryCollection.updateOne(filter,updateDoc,options)
@@ -78,7 +78,7 @@ app.delete('/myitems/:id',async(req,res)=>{
 })
 
 
-app.post('/addItems',async(req,res)=>{
+app.post('/additems',async(req,res)=>{
   const order = req.body
   const result = await newCollection.insertOne(order)
   console.log(result);
