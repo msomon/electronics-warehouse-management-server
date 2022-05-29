@@ -96,7 +96,7 @@ app.delete('/inventory/:id',async(req,res)=>{
 app.get('/myitems',async(req,res)=>{
   // const authHeader = req.headers.authorization
   // console.log(authHeader);
-  const decodedEmail = req.decoded.email
+  // const decodedEmail = req.decoded.email
   const email =req.query.email 
   // console.log(email);
   // if(email === decodedEmail){
