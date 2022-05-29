@@ -99,16 +99,16 @@ app.get('/myitems',async(req,res)=>{
   const decodedEmail = req.decoded.email
   const email =req.query.email 
   // console.log(email);
-  if(email === decodedEmail){
+  // if(email === decodedEmail){
     const query = {email: email}
     const cursor = newCollection.find(query)
     const newInventory = await cursor.toArray()
     res.send(newInventory)
 
-  }
-  else{
-    res.status(403).send({message:'Forbidden access'})
-  }
+  // }
+  // else{
+  //   res.status(403).send({message:'Forbidden access'})
+  // }
 
 })
 
