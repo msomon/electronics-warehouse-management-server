@@ -93,7 +93,7 @@ app.delete('/inventory/:id',async(req,res)=>{
 
 
 // my items  section //
-app.get('/myitems',verifyJWT,async(req,res)=>{
+app.get('/myitems',async(req,res)=>{
   // const authHeader = req.headers.authorization
   // console.log(authHeader);
   const decodedEmail = req.decoded.email
