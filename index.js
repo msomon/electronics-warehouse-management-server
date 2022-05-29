@@ -10,7 +10,7 @@ const app =express()
 app.use(cors())
 app.use(express.json()); 
 
-//  verifying  //
+//  verifying jwt token  //
 function verifyJWT(req,res,next){
   const authHeader = req.headers.authorization
   // console.log(authHeader);
