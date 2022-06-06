@@ -19,9 +19,9 @@ function verifyJWT(req,res,next){
   }
   const token = authHeader.split(' ')[1]
   jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,decoded)=>{
-    if(err){
-      return res.status(403).send({message:'forbidden access'})
-    }
+    // if(err){
+    //   return res.status(403).send({message:'forbidden access'})
+    // }
     // console.log('decoded' ,decoded);
     req.decoded =decoded
     next()
@@ -41,7 +41,6 @@ async function run(){
 try{
   await client.connect()
   const inventoryCollection = client.db('electronicsWarehouse').collection('inventory')
-  const newCollection = client.db('electronicsWarehouse').collection('newInvetory')
 
   //auth  
 app.post('/login',async (req,res)=>{
@@ -101,9 +100,8 @@ app.get('/myitems',async(req,res)=>{
   // console.log(email);
   // if(email === decodedEmail){
     const query = {email: email}
-    const cursor = newCollection.find(query)
-    const newInventory = await cursor.toArray()
-    res.send(newInventory)
+    const cursor =await inventoryCollection.find(query).toArray()
+    res.send(cursor)
 
   // }
   // else{
@@ -115,15 +113,15 @@ app.get('/myitems',async(req,res)=>{
 app.delete('/myitems/:id',async(req,res)=>{
   const id =req.params.id 
   const query = {_id:ObjectId(id)}
-  const result = await newCollection.deleteOne(query)
+  const result = await inventoryCollection.deleteOne(query)
   res.send(result)
 })
 
 
 app.post('/additems',async(req,res)=>{
   const order = req.body
-  const result = await newCollection.insertOne(order)
-  console.log(result);
+  const result = await inventoryCollection.insertOne(order)
+  // console.log(result);
   res.send(result)
 })
 
