@@ -96,11 +96,11 @@ app.get('/myitems',async(req,res)=>{
   // const authHeader = req.headers.authorization
   // console.log(authHeader);
   // const decodedEmail = req.decoded.email
-  const email =req.query.email 
+  const email = req.query.email 
   // console.log(email);
   // if(email === decodedEmail){
     const query = {email: email}
-    const cursor =await inventoryCollection.find(query).toArray()
+    const cursor = await inventoryCollection.find(query).toArray()
     res.send(cursor)
 
   // }
@@ -109,6 +109,8 @@ app.get('/myitems',async(req,res)=>{
   // }
 
 })
+
+
 
 app.delete('/myitems/:id',async(req,res)=>{
   const id =req.params.id 
