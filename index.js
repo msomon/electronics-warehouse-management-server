@@ -98,7 +98,7 @@ app.delete('/inventory/:id',async(req,res)=>{
 
 
 // my items  section //
-app.get('/myitems', async(req,res)=>{
+app.get('/myitems',verifyJWT, async(req,res)=>{
   // const authHeader = req.headers.authorization
   // console.log(authHeader);
   // const decodedEmail = req.decoded.email
@@ -126,7 +126,7 @@ app.delete('/myitems/:id',async(req,res)=>{
 })
 
 
-app.post('/additems',async(req,res)=>{
+app.post('/additems', async(req,res)=>{
   const order = req.body
   const result = await inventoryCollection.insertOne(order)
   // console.log(result);
