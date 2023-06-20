@@ -1,16 +1,22 @@
-const express = require('express')
+const express = require('express')  
+const app =express()
 const cors = require('cors')
 const { MongoClient, ServerApiVersion ,ObjectId } = require('mongodb');
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const port = process.env.PORT || 5000 ;
 
-const app =express()
+
+
+
+
 //  middale ware  //
 app.use(cors())
 app.use(express.json()); 
 
 //  verifying jwt token  //
+// process.env.ACCESS_TOKEN_SECRET
+
 function verifyJWT(req,res,next){
   const authHeader = req.headers.authorization
   // console.log(authHeader);
@@ -22,12 +28,11 @@ function verifyJWT(req,res,next){
     // if(err){
     //   return res.status(403).send({message:'forbidden access'})
     // }
-    // console.log('decoded' ,decoded);
-    req.decoded =decoded
+    console.log('decoded' ,decoded);
+    req.decoded = decoded
     next()
   })
 }
-
 
 
 
@@ -43,6 +48,7 @@ try{
   const inventoryCollection = client.db('electronicsWarehouse').collection('inventory')
 
   //auth  
+  process.env.ACCESS_TOKEN_SECRET
 app.post('/login',async (req,res)=>{
 const user = req.body
 const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{
