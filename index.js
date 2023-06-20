@@ -48,7 +48,7 @@ try{
   const inventoryCollection = client.db('electronicsWarehouse').collection('inventory')
 
   //auth  
-  process.env.ACCESS_TOKEN_SECRET
+ 
 app.post('/login',async (req,res)=>{
 const user = req.body
 const accessToken = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{
@@ -98,7 +98,7 @@ app.delete('/inventory/:id',async(req,res)=>{
 
 
 // my items  section //
-app.get('/myitems',verifyJWT, async(req,res)=>{
+app.get('/myitems', async(req,res)=>{
   // const authHeader = req.headers.authorization
   // console.log(authHeader);
   // const decodedEmail = req.decoded.email
