@@ -4,7 +4,7 @@ const cors = require('cors')
 const { MongoClient, ServerApiVersion ,ObjectId } = require('mongodb');
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
-const port =process.env.PORT || 5000 ;
+const port = process.env.PORT || 5000 ;
 
 
 
@@ -28,7 +28,7 @@ function verifyJWT(req,res,next){
     // if(err){
     //   return res.status(403).send({message:'forbidden access'})
     // }
-    console.log('decoded' ,decoded);
+    // console.log('decoded' ,decoded);
     req.decoded = decoded
     next()
   })
