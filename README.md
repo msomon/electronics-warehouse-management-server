@@ -1,13 +1,8 @@
 
-# Food Shop
-
- 
-##    Client Code: https://github.com/msomon/manufacturer-website-client
-
-##   Server Code: https://github.com/msomon/manufacturer-website-server
-
-##   Live Site: https://electronics-manufacturer.web.app
-
+# ELECTRONICS-WAREHOUSE
+## Live-link :https://electronics-warehouse-59bbd.web.app/
+## Warehouse Server Code :https://github.com/msomon/electronics-warehouse-management-server
+## Warehouse Clint Code :https://github.com/msomon/electronics-warehouse-management-clint
 
 
 ## Overview
@@ -51,7 +46,7 @@ Ensure a predictable state flow for seamless user interactions.
 ## USAGES TECHNOLOGY
 
 * Reactjs
-* Tailwind
+* Bootstrap
 * MongoDB
 * Nodejs
 * Express.js
@@ -112,9 +107,9 @@ Clone this repository to your local machine.
 
 ### Run the command 
 
-git clone https://github.com/msomon/manufacturer-website-client
+git clone https://github.com/msomon/electronics-warehouse-management-client
 
-git clone https://github.com/msomon/manufacturer-website-server
+git clonehttps://github.com/msomon/electronics-warehouse-management-server
 
 npm install 
 
@@ -124,8 +119,3 @@ cd manufacturer-website-clint ||  manufacturer-website-server
 
 npm start
 Open your web browser and go to http://localhost:3000 to view the website.
-  
-
-
-
-
